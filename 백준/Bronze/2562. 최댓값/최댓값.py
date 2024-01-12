@@ -1,5 +1,5 @@
 lists = []
-index = 0
+inde = 0
 
 for _ in range(9):
     a = int(input())
@@ -10,7 +10,7 @@ max = lists[0]
 for i in range(len(lists)):
     if max <= lists[i]:
         max = lists[i]
-        index = i
+        inde = i
 
 print(max)
-print(index+1)
+print(inde+1)
