@@ -1,33 +1,37 @@
+import sys
 from collections import deque
+input = sys.stdin.readline
 
 n, m, v = map(int, input().split())
+graph = [[] for _ in range(n+1)]
 
-graph =[[False] * (n+1) for _ in range(n+1)]
+for i in range(m):
+    a, b = map(int, input().split())
+    graph[a] += [b]
+    graph[b] += [a]
+    graph[a].sort()
+    graph[b].sort()
 
-for i in range(m) :
-    x, y = map(int, input().split())
-    graph[x][y] = 1
-    graph[y][x] = 1
+visited_bfs = [False] * (n+1)
+visited_dfs = [False] * (n+1)
 
-visited1 = [False] * (n+1)
-visited2 = [False] * (n+1)
-
-def dfs(v):
-    visited1[v] = True
-    print(v, end=" ")
-    for i in range(1, n + 1):
-        if not visited1[i] and graph[v][i] == 1:
-            dfs(i)
 def bfs(v):
     q = deque([v])
-    visited2[v] = True
+    visited_bfs[v] = True
     while q:
         v = q.popleft()
         print(v, end=" ")
-        for i in range(1, n + 1):
-            if not visited2[i] and graph[v][i] == 1:
+        for i in graph[v]:
+            if not visited_bfs[i]:
                 q.append(i)
-                visited2[i] = True
+                visited_bfs[i] = True
+def dfs(v):
+    visited_dfs[v] = True
+    print(v, end=" ")
+    for i in graph[v]:
+        if not visited_dfs[i]:
+            dfs(i)
+
 dfs(v)
 print()
 bfs(v)
