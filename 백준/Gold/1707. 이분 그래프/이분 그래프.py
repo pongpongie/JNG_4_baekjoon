@@ -14,18 +14,18 @@ def dfs(v, group):
     return True
 
 for _ in range(int(input())):
-    V, E = map(int, input().split())
-    graph = [[] for i in range(V+1)] # 빈 그래프 생성
-    visited = [0] * (V+1) # 방문한 정점 체크
+    v, e = map(int, input().split())
+    graph = [[] for _ in range(v+1)] # 빈 그래프 생성
+    visited = [0] * (v+1) # 방문한 정점 체크
 
-    for _ in range(E):
+    for _ in range(e):
         a,b = map(int, input().split())
         graph[a].append(b) # 무방향 그래프
         graph[b].append(a) # 무방향 그래프
 
     bipatite = True
 
-    for i in range(1, V+1):
+    for i in range(1, v+1):
         if visited[i] == 0: # 방문한 정점이 아니면, dfs 수행
             bipatite = dfs(i, 1)
             if not bipatite:
