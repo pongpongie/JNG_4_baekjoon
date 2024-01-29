@@ -1,18 +1,15 @@
 import sys
 input = sys.stdin.readline
 
-n, k = map(int, input().split())
-cointypes = []
+N, K = map(int, input().split())
+coins = [int(input()) for _ in range(N)]
 
-for _ in range(n):
-    cointypes.append(int(input()))
-
-a = reversed(cointypes)
+a = reversed(coins)
 cnt = 0
 
-for coin in a:    
-    cnt += k // coin
-    k = k % coin
-    if k == 0:
-        print(cnt)
-        break
+for coin in a:
+    if K // coin:
+        cnt += K//coin
+        K %= coin
+
+print(cnt)
