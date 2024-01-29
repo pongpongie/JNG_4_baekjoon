@@ -7,18 +7,12 @@ cointypes = []
 for _ in range(n):
     cointypes.append(int(input()))
 
-cointypes.sort(reverse=True)
-
-rest = 0
+a = reversed(cointypes)
 cnt = 0
 
-for i in range(n):
-    if i == 0:
-        cnt += k // cointypes[i]
-        rest = k % cointypes[i]
-    elif i != 0:
-        cnt += rest // cointypes[i]
-        rest = rest % cointypes[i]
-    if rest == 0:
+for coin in a:    
+    cnt += k // coin
+    k = k % coin
+    if k == 0:
         print(cnt)
         break
