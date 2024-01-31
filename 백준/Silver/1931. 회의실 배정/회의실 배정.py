@@ -1,20 +1,20 @@
 import sys
-input = sys.stdin.readline
 
-n = int(input())
+N = int(sys.stdin.readline())
 
-meeting = []
+time = [[0]*2 for _ in range(N)]
+for i in range(N):
+    s, e = map(int, sys.stdin.readline().split())
+    time[i][0] = s
+    time[i][1] = e
 
-for i in range(n):
-    meeting.append(list(map(int, input().split())))
-
-meeting.sort(key=lambda a: (a[1], a[0]))
+time.sort(key = lambda x: (x[1], x[0]))
 
 cnt = 1
-end_time = meeting[0][1]
-for i in range(1, n):
-    if meeting[i][0] >= end_time:
+end_time = time[0][1]
+for i in range(1, N):
+    if time[i][0] >= end_time:
         cnt += 1
-        end_time = meeting[i][1]
+        end_time = time[i][1]
 
 print(cnt)
