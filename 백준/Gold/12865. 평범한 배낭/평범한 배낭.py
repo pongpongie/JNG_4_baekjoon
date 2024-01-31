@@ -7,7 +7,6 @@ items = [(0,0)]
 
 for _ in range(n):
     items.append(tuple(map(int, input().split())))
-items.sort()
 
 for i in range(1, n+1):
     for j in range(1, k+1):
